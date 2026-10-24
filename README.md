@@ -53,18 +53,15 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-export SENTRY_DSN="https://<key>@o<org>.ingest.sentry.io/<project>"
+cp .env.example .env   # если .env ещё нет
+# откройте .env и вставьте свой DSN
+
 python app.py
 ```
 
-`SENTRY_DSN` берётся в Sentry: **Settings → Projects → [ваш проект] → Client Keys (DSN)**.
+DSN: **Settings → Projects → [ваш проект] → Client Keys (DSN)**.  
+Файл `.env` в `.gitignore` и в репозиторий не попадает; в git только `.env.example`.
 
 ### Код
 
 См. [`app.py`](app.py).
-
-### Результат
-
-**Скриншот меню Issues:**
-
-![Issues from SDK](screenshots/04-issues-sdk.png)

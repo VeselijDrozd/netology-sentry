@@ -3,12 +3,19 @@
 import os
 import sys
 
+from dotenv import load_dotenv
 import sentry_sdk
 from sentry_sdk import capture_exception, capture_message, set_tag, set_user
 
+load_dotenv()
+
 dsn = os.environ.get("SENTRY_DSN")
 if not dsn:
-    print("Задайте SENTRY_DSN (Client Keys в настройках проекта Sentry).", file=sys.stderr)
+    print(
+        "Задайте SENTRY_DSN в файле .env (см. .env.example) "
+        "или в переменной окружения.",
+        file=sys.stderr,
+    )
     sys.exit(1)
 
 sentry_sdk.init(
